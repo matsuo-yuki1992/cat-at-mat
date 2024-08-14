@@ -1,0 +1,2 @@
+class UserAndGroup < ApplicationRecord
+end
