@@ -1,2 +1,22 @@
-<h1>Users#mypage</h1>
-<p>Find me in app/views/users/mypge.html.erb</p>
+<div class="col-md-8 offset-md-1">
+      <h2>あなたの投稿</h2>
+      <table class="table table-hover table-inverse">
+        <thead>
+          <tr>
+            <th class="col-1"></th>
+            <th>タイトル</th>
+            <th>本文</th>
+            <th colspan="3"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @posts.each do |posts| %>
+          <tr>
+            <td><%= link_to "画像",user_path(posts.user_id) %></td>
+            <td><%= link_to posts.title,post_path(posts.id) %></td>
+            <td><%= posts.body %></td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
