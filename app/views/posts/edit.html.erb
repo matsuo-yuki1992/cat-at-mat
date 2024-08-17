@@ -1,2 +1,18 @@
-<h1>Posts#edit</h1>
-<p>Find me in app/views/posts/edit.html.erb</p>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12 col-sm-8 col-lg-5 px-5 px-sm-0 mx-auto">
+      <h2>編集</h2>
+      <%= form_with model: @post do |f| %>
+      <div class="form-group">
+        <label for="post-title">タイトル</label>
+        <%= f.text_field :title ,class: "form-control post-title" %>
+      </div>
+      <div class="form-group">
+        <label for="post-body">内容</label>
+        <%= f.text_area :body,class: "form-control post-body" %>
+      </div>
+      <%= f.submit "編集する",method: :patch,class: "btn btn-secondary" %>
+      <% end %>
+    </div>
+  </div>
+</div>
