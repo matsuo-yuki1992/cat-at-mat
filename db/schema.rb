@@ -73,9 +73,9 @@ ActiveRecord::Schema.define(version: 2024_08_14_022715) do
   create_table "posts", force: :cascade do |t|
     t.string "title", null: false
     t.text "body", null: false
-    t.text "address", null: false
-    t.float "latitude", null: false
-    t.float "longitude", null: false
+    t.text "address"
+    t.float "latitude"
+    t.float "longitude"
     t.integer "user_id", null: false
     t.integer "genre_id", null: false
     t.datetime "created_at", precision: 6, null: false

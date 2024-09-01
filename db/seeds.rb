@@ -8,6 +8,10 @@
 
 puts "dataの作成を開始します"
 
+Admin.find_or_create_by!(email: "admin@example.com") do |admin|
+  admin.password = "password"
+end
+
 taro = User.find_or_create_by!(email: "taro@example.com") do |user|
   user.name = "Taro"
   user.password = "password"
@@ -15,7 +19,7 @@ taro = User.find_or_create_by!(email: "taro@example.com") do |user|
 end
 
 genre_a = Genre.find_or_create_by!(name: "genre_a")
-
+genre_b = Genre.find_or_create_by!(name: "genre_b")
 taro.posts.find_or_create_by!(title: "test") do |post|
   post.body = "aaaa"
   post.address = "iiiii"

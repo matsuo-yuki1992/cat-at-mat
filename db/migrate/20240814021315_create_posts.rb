@@ -3,9 +3,9 @@ class CreatePosts < ActiveRecord::Migration[6.1]
     create_table :posts do |t|
       t.string :title, null: false
       t.text :body, null: false
-      t.text :address, null: false
-      t.float :latitude, null: false
-      t.float :longitude, null: false
+      t.text :address
+      t.float :latitude
+      t.float :longitude
       t.bigint :user_id, null: false
       t.bigint :genre_id, null: false
       t.timestamps
