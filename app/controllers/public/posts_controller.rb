@@ -22,21 +22,29 @@ class Public::PostsController < ApplicationController
   
   def update
     @post = Post.find(params[:id])
-    @post.update(post_params)
+    @genres = Genre.all.to_a
+    if@post.update(post_params)
     redirect_to post_path
+    else
+      render :edit
+    end
   end
   
   def create
     @post_new=Post.new(post_params)
     @post_new.user_id = current_user.id
-    @post_new.save!
+    @genres = Genre.all.to_a
+    if@post_new.save
     redirect_to posts_path
+    else
+      render :new
+    end
   end
   
   def destroy
     @post=Post.find(params[:id])
     @post.destroy
-    redirect_to user_mypage_path(current_user.id)
+    redirect_to mypage_users_path(current_user.id)
   end
   
   private

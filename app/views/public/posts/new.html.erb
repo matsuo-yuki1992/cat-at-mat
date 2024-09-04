@@ -1,3 +1,11 @@
+<% if @post_new.errors.any? %>
+  <%= @post_new.errors.count %>件のエラーが発生しました
+  <ul>
+    <% @post_new.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
+<% end %>
 <div class="row">
   <div class="col-sm-12">
     <h2 class="mt-3">投稿する</h2>

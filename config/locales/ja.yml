@@ -1,6 +1,8 @@
 ja:
   activerecord:
     attributes:
+      genre:
+        name: ジャンル
       post:
         title: タイトル
         body: 本文

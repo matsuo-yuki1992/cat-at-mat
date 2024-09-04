@@ -5,6 +5,8 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable, :recoverable, :rememberable and :omniauthable
   devise :database_authenticatable, :registerable, :validatable
   
+  validates :name, length: {minimum: 2,maximum: 20},uniqueness:true
+  
     def get_profile_image(width, height)
     unless profile_image.attached?
       file_path = Rails.root.join('app/assets/images/default-image.jpg')
