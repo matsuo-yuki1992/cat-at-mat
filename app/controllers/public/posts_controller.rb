@@ -6,8 +6,9 @@ class Public::PostsController < ApplicationController
 
   def index
     @posts = Post.all
-    
-    
+    if params[:title].present?
+      @posts = Post.search_by_title(params[:title])
+    end
   end
 
   def show
@@ -17,37 +18,37 @@ class Public::PostsController < ApplicationController
 
   def edit
     user = User.find(params[:id])
-      unless user.id == current_user.id
+    unless user.id == current_user.id
       redirect_to posts_path
-      end
+    end
     
     @post=Post.find(params[:id])
-     @genres = Genre.all
+    @genres = Genre.all
   end
   
   def update
     @post = Post.find(params[:id])
     @genres = Genre.all.to_a
-    if@post.update(post_params)
-    redirect_to post_path
+    if @post.update(post_params)
+      redirect_to post_path
     else
       render :edit
     end
   end
   
   def create
-    @post_new=Post.new(post_params)
+    @post_new = Post.new(post_params)
     @post_new.user_id = current_user.id
     @genres = Genre.all.to_a
-    if@post_new.save
-    redirect_to posts_path
+    if @post_new.save
+      redirect_to posts_path
     else
       render :new
     end
   end
   
   def destroy
-    @post=Post.find(params[:id])
+    @post = Post.find(params[:id])
     @post.destroy
     redirect_to mypage_users_path(current_user.id)
   end
@@ -55,6 +56,6 @@ class Public::PostsController < ApplicationController
   private
   
   def post_params
-    params.require(:post).permit(:title,:body,:genre_id)
+    params.require(:post).permit(:title, :body, :genre_id)
   end
 end
