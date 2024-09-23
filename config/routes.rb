@@ -20,11 +20,12 @@ Rails.application.routes.draw do
       end
     end
     resources :groups
-    resources :posts
+    resources :posts, only: [:edit, :index, :new, :show] do
+      resources :post_comments, only: [:create]
+    end
     resources :homes, only: [] do
       collection do
         get :about
-        get :search
       end
     end
   end
