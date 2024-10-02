@@ -1,4 +1,7 @@
 class Public::PostsController < ApplicationController
+  before_action :authenticate_user!
+  before_action :authenticate_author!, only: [:edit, :update, :destroy]
+  
   def new
     @post_new = Post.new
     @genres = Genre.all
@@ -18,11 +21,6 @@ class Public::PostsController < ApplicationController
   end
 
   def edit
-    user = User.find(params[:id])
-    unless user.id == current_user.id
-      redirect_to posts_path
-    end
-    
     @post = Post.find(params[:id])
     @genres = Genre.all
   end
@@ -49,8 +47,8 @@ class Public::PostsController < ApplicationController
   end
   
   def destroy
-    @post = Post.find(params[:id])
-    @post.destroy
+    post = Post.find(params[:id])
+    post.destroy
     redirect_to mypage_users_path(current_user.id)
   end
   
@@ -58,5 +56,12 @@ class Public::PostsController < ApplicationController
   
   def post_params
     params.require(:post).permit(:title, :body, :genre_id)
+  end
+  
+  def authenticate_author!
+    post = Post.find(params[:id])
+    if post.user != current_user
+      redirect_to posts_path
+    end
   end
 end

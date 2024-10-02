@@ -1,1 +1,22 @@
-aaaa
+<div class="row">
+  <div class="col-md-8 offset-md-1">
+    <h2>ユーザー一覧</h2>
+    <table class="table table-hover table-inverse">
+      <thead>
+        <tr>
+          <th class="col-1"></th>
+          <th>ユーザー名</th>
+          <th colspan="3"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @users.each do |users| %>
+        <tr>
+          <td><%= link_to "画像",user_path(users.id) %></td>
+          <td><%= link_to users.name,user_path(users.id) %></td>
+          <td><%= link_to "Destroy",admin_user_path(users.id),method: :delete,class:"btn btn-sm btn-danger", "data-confirm" =>"本当に消しますか？" %></td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>

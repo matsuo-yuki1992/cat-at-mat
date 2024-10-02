@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   root to: "public/homes#top"
   
-  devise_for :admins, skip: [:registrations], controllers: {
+  devise_for :admins, controllers: {
     sessions: "admins/sessions",
   }
   devise_for :users, controllers: {
@@ -10,7 +10,8 @@ Rails.application.routes.draw do
   }
   
   namespace :admin do
-    resources :users, only: [:index]
+    resources :users, only: [:index, :destroy]
+    resources :posts, only: [:index, :destroy]
   end
   
   scope module: :public do
@@ -20,7 +21,7 @@ Rails.application.routes.draw do
       end
     end
     resources :groups
-    resources :posts, only: [:edit, :index, :new, :show] do
+    resources :posts, only: [:edit, :index, :new, :show, :create] do
       resources :post_comments, only: [:create]
     end
     resources :homes, only: [] do

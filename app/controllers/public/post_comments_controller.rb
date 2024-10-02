@@ -1,4 +1,5 @@
 class Public::PostCommentsController < ApplicationController
+  before_action :authenticate_user!
     
   def create
     posts = Post.find(params[:post_id])
@@ -13,5 +14,4 @@ class Public::PostCommentsController < ApplicationController
   def post_comment_params
     params.require(:post_comment).permit(:body)
   end
-  
 end
