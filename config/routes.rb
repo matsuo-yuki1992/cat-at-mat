@@ -11,7 +11,9 @@ Rails.application.routes.draw do
   
   namespace :admin do
     resources :users, only: [:index, :destroy]
-    resources :posts, only: [:index, :destroy]
+    resources :posts, only: [:index, :show, :destroy] do
+      resources :posts_comment, only: [:destroy]
+    end
   end
   
   scope module: :public do

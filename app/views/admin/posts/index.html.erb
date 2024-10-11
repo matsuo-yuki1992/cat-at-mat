@@ -14,9 +14,9 @@
         <% @posts.each do |posts| %>
         <tr>
           <td><%= link_to "画像",user_path(posts.user_id) %></td>
-          <td><%= link_to posts.title,post_path(posts.id) %></td>
+          <td><%= link_to posts.title,admin_post_path(posts.id) %></td>
           <td><%= posts.body %></td>
-          <td><%= link_to "Destroy",admin_post_path(posts.id),method: :delete,class:"btn btn-sm btn-danger", "data-confirm" =>"本当に消しますか？" %></td>
+          <td><%= link_to "Destroy",admin_post_path(posts.id), method: :delete,class:"btn btn-sm btn-danger", "data-confirm" =>"本当に消しますか？" %></td>
         </tr>
         <% end %>
       </tbody>
