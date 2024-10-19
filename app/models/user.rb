@@ -1,6 +1,8 @@
 class User < ApplicationRecord
   has_many :posts, dependent: :destroy
   has_many :post_comments, dependent: :destroy
+  has_many :user_and_group, dependent: :destroy
+  has_many :groups, through: :user_and_group
   has_one_attached :profile_image
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable, :recoverable, :rememberable and :omniauthable

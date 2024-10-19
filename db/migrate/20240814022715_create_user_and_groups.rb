@@ -6,7 +6,7 @@ class CreateUserAndGroups < ActiveRecord::Migration[6.1]
       t.timestamps
     end
     
-    add_foreign_key :user_and_groups, :users
-    add_foreign_key :user_and_groups, :groups
+    add_foreign_key :user_and_groups, :users, column: :user_id
+    add_foreign_key :user_and_groups, :groups, column: :group_id
   end
 end

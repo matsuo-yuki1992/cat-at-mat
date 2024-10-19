@@ -14,6 +14,10 @@ Rails.application.routes.draw do
     resources :posts, only: [:index, :show, :destroy] do
       resources :posts_comment, only: [:destroy]
     end
+    
+    resources :groups, only: [:index, :create, :edit, :update, :destroy] do
+      resource :user_and_group, only: [:create, :destroy]
+    end
   end
   
   scope module: :public do
@@ -22,7 +26,8 @@ Rails.application.routes.draw do
         get :mypage
       end
     end
-    resources :groups
+    resources :groups, only: [:index, :show]
+    resources :user_and_groups, only: [:create, :destroy]
     resources :posts, only: [:edit, :index, :new, :show, :create] do
       resources :post_comments, only: [:create]
     end

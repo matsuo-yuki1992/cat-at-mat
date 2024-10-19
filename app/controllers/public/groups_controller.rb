@@ -1,15 +1,11 @@
 class Public::GroupsController < ApplicationController
   before_action :authenticate_user!
   
-  def new
-  end
-
   def index
+    @groups = Group.all
   end
 
   def show
-  end
-
-  def edit
+    @group = Group.find(params[:id])
   end
 end
