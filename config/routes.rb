@@ -26,8 +26,10 @@ Rails.application.routes.draw do
         get :mypage
       end
     end
-    resources :groups, only: [:index, :show]
-    resources :user_and_groups, only: [:create, :destroy]
+    resources :groups, only: [:index, :show] do
+      resource :user_and_groups, only: [:create, :destroy]
+    end
+    
     resources :posts, only: [:edit, :index, :new, :show, :create] do
       resources :post_comments, only: [:create]
     end

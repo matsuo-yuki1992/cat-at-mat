@@ -16,9 +16,9 @@
             <td><%= link_to groups.name, group_path(groups.id) %></td>
             <td><%= groups.user_and_group.count %></td>
             <td><% if groups.user_and_group.exists?(user_id: current_user.id) %>
-                <%= link_to "脱退", user_and_group_path(groups.id), method: :delete, class:"btn btn-sm btn-danger", "data-confirm" =>"脱退しますか？" %>
+                <%= link_to "脱退", group_user_and_groups_path(groups.id), method: :delete, class:"btn btn-sm btn-danger", "data-confirm" =>"脱退しますか？" %>
                 <% else %>
-                <%= link_to "参加", user_and_groups_path(groups.id), method: :post, class:"btn btn-sm btn-success", "data-confirm" =>"参加しますか？" %>
+                <%= link_to "参加", group_user_and_groups_path(groups.id), method: :post, class:"btn btn-sm btn-success", "data-confirm" =>"参加しますか？" %>
                 <% end %>
             </td>
           </tr>
